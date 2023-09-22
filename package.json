@@ -12,10 +12,37 @@
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "make-wkdir.helloWorld",
-      "title": "Hello World"
-    }]
+    "commands": [
+      {
+        "command": "make-wkdir.helloWorld",
+        "title": "Hello World"
+      }
+    ],
+    "configuration": {
+      "title": "make work directory",
+      "properties": {
+        "make-wkdir.productsPath": {
+          "type": "string",
+          "default": "/Users/kanta/hacking/products",
+          "markdownDescription": "Path of work dir for products"
+        },
+        "make-wkdir.toolsPath": {
+          "type": "string",
+          "default": "/Users/kanta/hacking/tools",
+          "markdownDescription": "Path of work dir for tools"
+        },
+        "make-wkdir.learningPath": {
+          "type": "string",
+          "default": "/Users/kanta/hacking/learning",
+          "markdownDescription": "Path of work dir for learning"
+        },
+        "make-wkdir.spikePath": {
+          "type": "string",
+          "default": "/Users/kanta/hacking/spike",
+          "markdownDescription": "Path of work dir for spike"
+        }
+      }
+    }
   },
   "scripts": {
     "lint": "eslint .",
@@ -23,14 +50,14 @@
     "test": "node ./test/runTest.js"
   },
   "devDependencies": {
-    "@types/vscode": "^1.82.0",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
+    "@types/vscode": "^1.82.0",
+    "@vscode/test-electron": "^2.3.4",
     "chai": "^4.3.8",
     "eslint": "^8.47.0",
     "glob": "^10.3.3",
     "mocha": "^10.2.0",
-    "typescript": "^5.1.6",
-    "@vscode/test-electron": "^2.3.4"
+    "typescript": "^5.1.6"
   }
 }
