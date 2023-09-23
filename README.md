@@ -56,3 +56,32 @@ vscode で開発する際には、必ず作業▼フォルダーを開く必要�
 |mkwkdir.spikePath|`${userHome}/hacking/spike`|調査用作業フォルダーのベースフォルダー|
 |mkwkdir.resourcesPath|`${userHome}/hacking/res`|収集用作業フォルダーのベースフォルダー|
 
+## インストール方法
+
+以下を実行し、ソースコードから`vsix`ファイルを作成します。
+
+~~~shell
+% npm run package
+
+> mkwkdir@0.0.x package
+> npx vsce pack --allow-missing-repository --skip-license
+
+ DONE  Packaged: /Users/kanta/spike/86_make-wkdir/mkwkdir-0.0.x.vsix (7 files, 5.62KB)
+~~~
+
+`mkwkdir-0.0.x.vsix`が作成されるので、[Install from a VSIX | Managing Extensions in Visual Studio Code](https://code.visualstudio.com/docs/editor/extension-marketplace#_install-from-a-vsix)に従い、以下のいずれかの方法でインストールしてください。
+
+### 拡張機能サイドバーからインストール
+
+拡張機能サイドバーの右上にある`...`をクリックし、表示されるメニューから
+`VSIXからのインストール`を選択する。
+
+ファイル選択ダイアログが表示されるので、`mkwkdir-0.0.x.vsix`を選択しインストールする。
+
+### コマンドラインからインストール
+
+以下のコマンドを実行してインストールする。
+
+~~~shell
+code --install-extension mkwkdir-0.0.x.vsix
+~~~
