@@ -15,27 +15,27 @@
     "commands": [
       {
         "command": "make-wkdir.makeWkDirForProducts",
-        "category": "workDir",
+        "category": "mkwkdir",
         "title": "for products"
       },
       {
         "command": "make-wkdir.makeWkDirForTools",
-        "category": "workDir",
+        "category": "mkwkdir",
         "title": "for tools"
       },
       {
         "command": "make-wkdir.makeWkDirForLearning",
-        "category": "workDir",
+        "category": "mkwkdir",
         "title": "for Learning"
       },
       {
         "command": "make-wkdir.makeWkDirForSpike",
-        "category": "workDir",
+        "category": "mkwkdir",
         "title": "for spike"
       },
       {
         "command": "make-wkdir.makeWkDirForResources",
-        "category": "workDir",
+        "category": "mkwkdir",
         "title": "for resources"
       }
     ],
