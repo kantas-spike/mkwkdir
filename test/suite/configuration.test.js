@@ -9,7 +9,7 @@ suite("Configuration Test Suite", () => {
   vscode.window.showInformationMessage("Start all tests of configuration.");
 
   test("get default configuration value", () => {
-    const settings = vscode.workspace.getConfiguration("make-wkdir");
+    const settings = vscode.workspace.getConfiguration("mkwkdir");
 
     expect(settings.get("productsPath")).to.equal(
       "/Users/kanta/hacking/products"

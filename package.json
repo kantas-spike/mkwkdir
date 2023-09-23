@@ -1,6 +1,6 @@
 {
-  "name": "make-wkdir",
-  "displayName": "make-wkdir",
+  "name": "mkwkdir",
+  "displayName": "mkwkdir",
   "description": "Extension for creating a working directory",
   "version": "0.0.1",
   "engines": {
@@ -14,27 +14,27 @@
   "contributes": {
     "commands": [
       {
-        "command": "make-wkdir.makeWkDirForProducts",
+        "command": "mkwkdir.makeWkDirForProducts",
         "category": "mkwkdir",
         "title": "for products"
       },
       {
-        "command": "make-wkdir.makeWkDirForTools",
+        "command": "mkwkdir.makeWkDirForTools",
         "category": "mkwkdir",
         "title": "for tools"
       },
       {
-        "command": "make-wkdir.makeWkDirForLearning",
+        "command": "mkwkdir.makeWkDirForLearning",
         "category": "mkwkdir",
         "title": "for Learning"
       },
       {
-        "command": "make-wkdir.makeWkDirForSpike",
+        "command": "mkwkdir.makeWkDirForSpike",
         "category": "mkwkdir",
         "title": "for spike"
       },
       {
-        "command": "make-wkdir.makeWkDirForResources",
+        "command": "mkwkdir.makeWkDirForResources",
         "category": "mkwkdir",
         "title": "for resources"
       }
@@ -42,27 +42,27 @@
     "configuration": {
       "title": "make work directory",
       "properties": {
-        "make-wkdir.productsPath": {
+        "mkwkdir.productsPath": {
           "type": "string",
           "default": "/Users/kanta/hacking/products",
           "markdownDescription": "Path of work dir for products"
         },
-        "make-wkdir.toolsPath": {
+        "mkwkdir.toolsPath": {
           "type": "string",
           "default": "/Users/kanta/hacking/tools",
           "markdownDescription": "Path of work dir for tools"
         },
-        "make-wkdir.learningPath": {
+        "mkwkdir.learningPath": {
           "type": "string",
           "default": "/Users/kanta/hacking/learning",
           "markdownDescription": "Path of work dir for learning"
         },
-        "make-wkdir.spikePath": {
+        "mkwkdir.spikePath": {
           "type": "string",
           "default": "/Users/kanta/hacking/spike",
           "markdownDescription": "Path of work dir for spike"
         },
-        "make-wkdir.resourcesPath": {
+        "mkwkdir.resourcesPath": {
           "type": "string",
           "default": "/Users/kanta/hacking/res",
           "markdownDescription": "Path of work dir for resources"

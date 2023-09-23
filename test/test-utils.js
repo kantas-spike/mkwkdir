@@ -4,7 +4,7 @@ const path = require("path");
 
 let tmpDir;
 
-const runTestInTempDir = async (fn, dirPrefix = "make-wkdir") => {
+const runTestInTempDir = async (fn, dirPrefix = "mkwkdir") => {
   try {
     try {
       tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), dirPrefix));

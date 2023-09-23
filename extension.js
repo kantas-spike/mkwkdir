@@ -27,7 +27,7 @@ function makeWkDir(name, baseDirKey) {
       }
 
       const baseDir = vscode.workspace
-        .getConfiguration("make-wkdir")
+        .getConfiguration("mkwkdir")
         .get(baseDirKey);
       try {
         await fs.stat(baseDir)
@@ -61,35 +61,35 @@ function makeWkDir(name, baseDirKey) {
 function activate(context) {
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
-  console.log('Congratulations, your extension "make-wkdir" is now active!');
+  console.log('Congratulations, your extension "mkwkdir" is now active!');
 
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "make-wkdir.makeWkDirForProducts",
+      "mkwkdir.makeWkDirForProducts",
       makeWkDir("Products", "productsPath")
     )
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "make-wkdir.makeWkDirForTools",
+      "mkwkdir.makeWkDirForTools",
       makeWkDir("Tools", "toolsPath")
     )
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "make-wkdir.makeWkDirForLearning",
+      "mkwkdir.makeWkDirForLearning",
       makeWkDir("Tools", "learningPath")
     )
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "make-wkdir.makeWkDirForSpike",
+      "mkwkdir.makeWkDirForSpike",
       makeWkDir("Tools", "spikePath")
     )
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
-      "make-wkdir.makeWkDirForResources",
+      "mkwkdir.makeWkDirForResources",
       makeWkDir("Tools", "resourcesPath")
     )
   );
