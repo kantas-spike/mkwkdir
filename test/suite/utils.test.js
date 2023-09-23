@@ -78,14 +78,16 @@ suite("utils.makeWkDir", async () => {
       let no = await utils.getMaxPrefixNo(tmpdir)
       expect(no).to.equal(0)
       expect(fs.existsSync(path.join(tmpdir, "001_aaa"))).to.equal(false)
-      await utils.makeWkDir(tmpdir, "aaa")
+      let ret_path = await utils.makeWkDir(tmpdir, "aaa")
       expect(fs.existsSync(path.join(tmpdir, "001_aaa"))).to.equal(true)
+      expect(ret_path).to.equal(path.join(tmpdir, "001_aaa"))
 
       no = await utils.getMaxPrefixNo(tmpdir)
       expect(no).to.equal(1)
       expect(fs.existsSync(path.join(tmpdir, "002_bbb"))).to.equal(false)
-      await utils.makeWkDir(tmpdir, "bbb")
+      ret_path = await utils.makeWkDir(tmpdir, "bbb")
       expect(fs.existsSync(path.join(tmpdir, "002_bbb"))).to.equal(true)
+      expect(ret_path).to.equal(path.join(tmpdir, "002_bbb"))
 
       no = await utils.getMaxPrefixNo(tmpdir)
       expect(no).to.equal(2)

@@ -50,6 +50,7 @@ const makeWkDir = async (baseDir, wkDirName) => {
   const wkNameWithNo = formatDirName(wkDirName, no+1)
   const absPath = path.join(baseDir, wkNameWithNo)
   await fs.mkdir(absPath, { recursive: true})
+  return absPath
 };
 
 module.exports = {
