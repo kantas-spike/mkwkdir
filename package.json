@@ -9,6 +9,10 @@
   "categories": [
     "Other"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kantas-spike/mkwkdir.git"
+  },
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
@@ -74,7 +78,7 @@
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "node ./test/runTest.js",
-    "package": "npx vsce pack --allow-missing-repository --skip-license"
+    "package": "npx vsce pack --skip-license"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
