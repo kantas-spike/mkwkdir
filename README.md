@@ -1,65 +1,58 @@
-# make-wkdir README
+# mkwkdir
 
-This is the README for your extension "make-wkdir". After writing up a brief description, we recommend including the following sections.
+作業フォルダーを作成するための、Visual Studio Code(vscode)の拡張機能です。
+
+vscode で開発する際には、必ず作業▼フォルダーを開く必要があります。
+
+例えば、vscode を使って技術的なブログの記事を書いているとします。
+
+その時に、技術的に試さないといけない事が発生しました。どうしますか?
+
+私は以下のステップで、vscodeで新しい作業フォルダーを作成して、そのプロジェクト内で技術的な検証を行います。
+
+1. vscodeで新しいウィンドウを開く
+2. 新しいvscodeで`フォルダーを開く`を選び、新規作成した作業フォルダーを開く
+   1. 作業フォルダーを作りたい場所まで移動
+   2. 新しい作業フォルダーを作成
+   3. 作成したフォルダーを開く
+
+この`作業フォルダーを作成し開く`という作業を簡単にするのが、この拡張機能の目的です。
+
+本拡張機能では、作業フォルダーの種類を以下に分類しています。
+
+- プロダクト(product): ソフトウェア開発用
+- ツール(tools): 簡単なツール開発用
+- 勉強(learning): 言語やツールなどの学習用(チュートリアルなどの実施用)
+- 実験(spike): 技術的な調査や実験用
+- リソース(res): 資料や素材などの収集用
 
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+### コマンド
 
-For example if there is an image subfolder under your extension project workspace:
+本拡張機能は、コマンドパレットから以下のコマンドを呼び出して使用します。
+コマンドを実行すると、`作業フォルダー名`の入力を求められるので入力してください。
 
-\!\[feature X\]\(images/feature-x.png\)
+|拡張機能名|コマンド|説明|
+|---|---|---|
+|mkwkdir|for producsts|プロダクト(product): ソフトウェア開発用作業フォルダーを作成|
+|mkwkdir|for tools|ツール(tools): 簡単なツール開発用作業フォルダーを作成|
+|mkwkdir|for learning|勉強(learning): 言語やツールなどの学習用(チュートリアルなどの実施用)作業フォルダーを作成|
+|mkwkdir|for spike|技術的な調査や実験用作業フォルダーを作成|
+|mkwkdir|for resources|資料や素材などの収集用作業フォルダーを作成|
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+### 設定
 
-## Requirements
+本拡張機能は、作業フォルダー分類ごとのベースフォルダーパスを設定できる。
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+デフォルトでは、以下のベースフォルダーパスが設定されている。
+また、ベースフォルダーパスの設定値内の`${userHome}`はプレイスフォルダーとなっており、`os.homedir()`の値に置換される。
 
-## Extension Settings
+|設定|デフォルト値|説明|
+|---|---|---|
+|mkwkdir.productsPath|`${userHome}/hacking/products`|プロダクト用作業フォルダーのベースフォルダー|
+|mkwkdir.toolsPath|`${userHome}/hacking/tools`|ツール用作業フォルダーのベースフォルダー|
+|mkwkdir.learningPath|`${userHome}/hacking/learning`|学習用作業フォルダーのベースフォルダー|
+|mkwkdir.spikePath|`${userHome}/hacking/spike`|調査用作業フォルダーのベースフォルダー|
+|mkwkdir.resourcesPath|`${userHome}/hacking/res`|収集用作業フォルダーのベースフォルダー|
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets
-
-## For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
