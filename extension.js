@@ -87,6 +87,12 @@ function activate(context) {
       makeWkDir("Tools", "spikePath")
     )
   );
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "make-wkdir.makeWkDirForResources",
+      makeWkDir("Tools", "resourcesPath")
+    )
+  );
 }
 
 // This method is called when your extension is deactivated

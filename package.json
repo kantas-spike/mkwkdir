@@ -32,6 +32,11 @@
         "command": "make-wkdir.makeWkDirForSpike",
         "category": "workDir",
         "title": "for spike"
+      },
+      {
+        "command": "make-wkdir.makeWkDirForResources",
+        "category": "workDir",
+        "title": "for resources"
       }
     ],
     "configuration": {
@@ -56,6 +61,11 @@
           "type": "string",
           "default": "/Users/kanta/hacking/spike",
           "markdownDescription": "Path of work dir for spike"
+        },
+        "make-wkdir.resourcesPath": {
+          "type": "string",
+          "default": "/Users/kanta/hacking/res",
+          "markdownDescription": "Path of work dir for resources"
         }
       }
     }

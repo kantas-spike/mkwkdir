@@ -19,5 +19,7 @@ suite("Configuration Test Suite", () => {
       "/Users/kanta/hacking/learning"
     );
     expect(settings.get("spikePath")).to.equal("/Users/kanta/hacking/spike");
+
+    expect(settings.get("resourcesPath")).to.equal("/Users/kanta/hacking/res");
   });
 });
