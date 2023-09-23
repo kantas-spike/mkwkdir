@@ -44,28 +44,28 @@
       "properties": {
         "mkwkdir.productsPath": {
           "type": "string",
-          "default": "/Users/kanta/hacking/products",
+          "default": "${userHome}/hacking/products",
           "markdownDescription": "Path of work dir for products"
         },
         "mkwkdir.toolsPath": {
           "type": "string",
-          "default": "/Users/kanta/hacking/tools",
-          "markdownDescription": "Path of work dir for tools"
+          "default": "${userHome}/hacking/tools",
+          "markdownDescription": "Path of work dir for tools (`${userHome}` in the path is replaced with the value of `os.homedir()`)"
         },
         "mkwkdir.learningPath": {
           "type": "string",
-          "default": "/Users/kanta/hacking/learning",
-          "markdownDescription": "Path of work dir for learning"
+          "default": "${userHome}/hacking/learning",
+          "markdownDescription": "Path of work dir for learning (`${userHome}` in the path is replaced with the value of `os.homedir()`)"
         },
         "mkwkdir.spikePath": {
           "type": "string",
-          "default": "/Users/kanta/hacking/spike",
-          "markdownDescription": "Path of work dir for spike"
+          "default": "${userHome}/hacking/spike",
+          "markdownDescription": "Path of work dir for spike (`${userHome}` in the path is replaced with the value of `os.homedir()`)"
         },
         "mkwkdir.resourcesPath": {
           "type": "string",
-          "default": "/Users/kanta/hacking/res",
-          "markdownDescription": "Path of work dir for resources"
+          "default": "${userHome}/hacking/res",
+          "markdownDescription": "Path of work dir for resources (`${userHome}` in the path is replaced with the value of `os.homedir()`)"
         }
       }
     }

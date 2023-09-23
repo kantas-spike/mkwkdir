@@ -26,9 +26,7 @@ function makeWkDir(name, baseDirKey) {
         return;
       }
 
-      const baseDir = vscode.workspace
-        .getConfiguration("mkwkdir")
-        .get(baseDirKey);
+      const baseDir = utils.getBaseDirPath(baseDirKey)
       try {
         await fs.stat(baseDir)
       } catch (error) {

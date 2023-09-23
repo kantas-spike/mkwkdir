@@ -1,4 +1,6 @@
 const { expect } = require("chai");
+const utils = require("../../utils")
+const os = require('os')
 
 // You can import and use all API from the 'vscode' module
 // as well as import your extension to test it
@@ -12,14 +14,19 @@ suite("Configuration Test Suite", () => {
     const settings = vscode.workspace.getConfiguration("mkwkdir");
 
     expect(settings.get("productsPath")).to.equal(
-      "/Users/kanta/hacking/products"
+      "${userHome}/hacking/products"
     );
-    expect(settings.get("toolsPath")).to.equal("/Users/kanta/hacking/tools");
-    expect(settings.get("learningPath")).to.equal(
-      "/Users/kanta/hacking/learning"
-    );
-    expect(settings.get("spikePath")).to.equal("/Users/kanta/hacking/spike");
+    expect(utils.getBaseDirPath("productsPath")).to.equal(`${os.homedir()}/hacking/products`)
 
-    expect(settings.get("resourcesPath")).to.equal("/Users/kanta/hacking/res");
+    expect(settings.get("toolsPath")).to.equal("${userHome}/hacking/tools");
+    expect(utils.getBaseDirPath("toolsPath")).to.equal(`${os.homedir()}/hacking/tools`)
+    expect(settings.get("learningPath")).to.equal(
+      "${userHome}/hacking/learning"
+    );
+    expect(utils.getBaseDirPath("learningPath")).to.equal(`${os.homedir()}/hacking/learning`)
+    expect(settings.get("spikePath")).to.equal("${userHome}/hacking/spike");
+
+    expect(settings.get("resourcesPath")).to.equal("${userHome}/hacking/res");
+    expect(utils.getBaseDirPath("resourcesPath")).to.equal(`${os.homedir()}/hacking/res`)
   });
 });

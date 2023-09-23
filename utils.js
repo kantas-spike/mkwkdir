@@ -1,5 +1,7 @@
 const path = require("path");
 const fs = require("fs/promises");
+const os = require("os")
+const vscode = require("vscode");
 
 const getMaxPrefixNo = async (dir) => {
   const absPath = path.resolve(dir);
@@ -53,9 +55,22 @@ const makeWkDir = async (baseDir, wkDirName) => {
   return absPath
 };
 
+const replaceVarUserHome = (path) => {
+  return path.replace("${userHome}", os.homedir())
+}
+
+const getBaseDirPath = (baseDirKey) => {
+  const baseDir = replaceVarUserHome(
+    vscode.workspace.getConfiguration("mkwkdir").get(baseDirKey)
+  );
+  return baseDir;
+}
+
 module.exports = {
   getMaxPrefixNo,
   formatDirName,
   makeWkDir,
   hasPrefix,
+  replaceVarUserHome,
+  getBaseDirPath,
 };

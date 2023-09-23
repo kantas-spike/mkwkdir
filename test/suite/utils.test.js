@@ -2,6 +2,7 @@ const { expect } = require("chai");
 
 const fs = require("fs");
 const path = require("path");
+const os = require('os')
 
 const utils = require("../../utils");
 
@@ -93,4 +94,18 @@ suite("utils.makeWkDir", async () => {
       expect(no).to.equal(2)
     })
   })
+})
+
+suite("utils.replaceVarUserHome", () => {
+  test("path without var", () => {
+    expect(utils.replaceVarUserHome("/home/test/aaa/bbb")).to.equal("/home/test/aaa/bbb")
+  })
+
+  test("path with var", () => {
+    expect(utils.replaceVarUserHome("${userHome}/aaa/bbb")).to.equal(`${os.homedir()}/aaa/bbb`)
+  })
+})
+
+suite("utils.getBaseDirPath", () => {
+  expect(utils.getBaseDirPath("productsPath")).to.equal(`${os.homedir()}/hacking/products`)
 })
