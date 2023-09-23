@@ -40,12 +40,12 @@
       }
     ],
     "configuration": {
-      "title": "make work directory",
+      "title": "mkwkdir: make work directory",
       "properties": {
         "mkwkdir.productsPath": {
           "type": "string",
           "default": "${userHome}/hacking/products",
-          "markdownDescription": "Path of work dir for products"
+          "markdownDescription": "Path of work dir for products (`${userHome}` in the path is replaced with the value of `os.homedir()`)"
         },
         "mkwkdir.toolsPath": {
           "type": "string",
