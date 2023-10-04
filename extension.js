@@ -4,6 +4,33 @@ const vscode = require("vscode");
 const utils = require("./utils");
 const child_process = require("child_process");
 const fs = require("fs/promises");
+const path = require("path");
+
+function selectWkDir(name, baseDirKey) {
+  return async () => {
+    const baseDir = utils.getBaseDirPath(baseDirKey);
+    const subdirs = (await fs.readdir(baseDir, { withFileTypes: true }))
+      .filter((entry) => entry.isDirectory())
+      .map((entry) => path.join(baseDir, entry.name));
+    const selectedDir = await vscode.window.showQuickPick(subdirs, {
+      canPickMany: false,
+      title: `${name} 作業ディレクトリの選択`,
+    });
+
+    if (selectedDir) {
+      vscode.window.showInformationMessage(`${selectedDir}を開きます...`);
+      await vscode.commands.executeCommand(
+        "vscode.openFolder",
+        vscode.Uri.file(selectedDir),
+        { forceNewWindow: true }
+      );
+    } else {
+      vscode.window.showErrorMessage(
+        `${name}用の作業ディレクトリを選択してください`
+      );
+    }
+  };
+}
 
 function makeWkDir(name, baseDirKey) {
   return async () => {
@@ -26,12 +53,14 @@ function makeWkDir(name, baseDirKey) {
         return;
       }
 
-      const baseDir = utils.getBaseDirPath(baseDirKey)
+      const baseDir = utils.getBaseDirPath(baseDirKey);
       try {
-        await fs.stat(baseDir)
+        await fs.stat(baseDir);
       } catch (error) {
-        vscode.window.showInformationMessage(`${baseDir}が存在しないため作成しました`)
-        await fs.mkdir(baseDir, { recursive: true })
+        vscode.window.showInformationMessage(
+          `${baseDir}が存在しないため作成しました`
+        );
+        await fs.mkdir(baseDir, { recursive: true });
       }
 
       const wkDirPath = await utils.makeWkDir(baseDir, dirName);
@@ -61,6 +90,7 @@ function activate(context) {
   // This line of code will only be executed once when your extension is activated
   console.log('Congratulations, your extension "mkwkdir" is now active!');
 
+  // makeWkDir系
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.makeWkDirForProducts",
@@ -89,6 +119,37 @@ function activate(context) {
     vscode.commands.registerCommand(
       "mkwkdir.makeWkDirForResources",
       makeWkDir("Tools", "resourcesPath")
+    )
+  );
+  // selectWkDir系
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "mkwkdir.selectWkDirForProducts",
+      selectWkDir("Products", "productsPath")
+    )
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "mkwkdir.selectWkDirForTools",
+      selectWkDir("Tools", "toolsPath")
+    )
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "mkwkdir.selectWkDirForLearning",
+      selectWkDir("Tools", "learningPath")
+    )
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "mkwkdir.selectWkDirForSpike",
+      selectWkDir("Tools", "spikePath")
+    )
+  );
+  context.subscriptions.push(
+    vscode.commands.registerCommand(
+      "mkwkdir.selectWkDirForResources",
+      selectWkDir("Tools", "resourcesPath")
     )
   );
 }

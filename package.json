@@ -2,7 +2,7 @@
   "name": "mkwkdir",
   "displayName": "mkwkdir",
   "description": "Extension for creating a working directory",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.82.0"
   },
@@ -20,27 +20,53 @@
       {
         "command": "mkwkdir.makeWkDirForProducts",
         "category": "mkwkdir",
-        "title": "for products"
+        "title": "mkdir for products"
       },
       {
         "command": "mkwkdir.makeWkDirForTools",
         "category": "mkwkdir",
-        "title": "for tools"
+        "title": "mkdir for tools"
       },
       {
         "command": "mkwkdir.makeWkDirForLearning",
         "category": "mkwkdir",
-        "title": "for Learning"
+        "title": "mkdir for Learning"
       },
       {
         "command": "mkwkdir.makeWkDirForSpike",
         "category": "mkwkdir",
-        "title": "for spike"
+        "title": "mkdir for spike"
       },
       {
         "command": "mkwkdir.makeWkDirForResources",
         "category": "mkwkdir",
-        "title": "for resources"
+        "title": "mkdir for resources"
+      },
+
+      {
+        "command": "mkwkdir.selectWkDirForProducts",
+        "category": "mkwkdir",
+        "title": "open dir for products"
+      },
+      {
+        "command": "mkwkdir.selectWkDirForTools",
+        "category": "mkwkdir",
+        "title": "open dir for tools"
+      },
+      {
+        "command": "mkwkdir.selectWkDirForLearning",
+        "category": "mkwkdir",
+        "title": "open dir for Learning"
+      },
+      {
+        "command": "mkwkdir.selectWkDirForSpike",
+        "category": "mkwkdir",
+        "title": "open dir for spike"
+      },
+      {
+        "command": "mkwkdir.selectWkDirForResources",
+        "category": "mkwkdir",
+        "title": "open dir for resources"
       }
     ],
     "configuration": {
@@ -89,7 +115,13 @@
     "chai": "^4.3.8",
     "eslint": "^8.47.0",
     "glob": "^10.3.3",
+    "istanbul-lib-coverage": "^3.2.0",
+    "istanbul-lib-hook": "^3.0.0",
+    "istanbul-lib-instrument": "^6.0.1",
+    "istanbul-lib-report": "^3.0.1",
+    "istanbul-reports": "^3.1.6",
     "mocha": "^10.2.0",
+    "test-exclude": "^6.0.0",
     "typescript": "^5.1.6"
   }
 }

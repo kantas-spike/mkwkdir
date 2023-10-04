@@ -35,11 +35,16 @@ vscode で開発する際には、必ず作業▼フォルダーを開く必要�
 
 |拡張機能名|コマンド|説明|
 |---|---|---|
-|mkwkdir|for producsts|プロダクト(product): ソフトウェア開発用作業フォルダーを作成|
-|mkwkdir|for tools|ツール(tools): 簡単なツール開発用作業フォルダーを作成|
-|mkwkdir|for learning|勉強(learning): 言語やツールなどの学習用(チュートリアルなどの実施用)作業フォルダーを作成|
-|mkwkdir|for spike|技術的な調査や実験用作業フォルダーを作成|
-|mkwkdir|for resources|資料や素材などの収集用作業フォルダーを作成|
+|mkwkdir|mkdir for producsts|プロダクト(product): ソフトウェア開発用作業フォルダーを作成|
+|mkwkdir|mkdir for tools|ツール(tools): 簡単なツール開発用作業フォルダーを作成|
+|mkwkdir|mkdir for learning|勉強(learning): 言語やツールなどの学習用(チュートリアルなどの実施用)作業フォルダーを作成|
+|mkwkdir|mkdir for spike|技術的な調査や実験用作業フォルダーを作成|
+|mkwkdir|mkdir for resources|資料や素材などの収集用作業フォルダーを作成|
+|mkwkdir|open dir for producsts|プロダクト(product): 一覧からソフトウェア開発用作業フォルダーを選択して開く|
+|mkwkdir|open dir for tools|ツール(tools): 一覧から簡単なツール開発用作業フォルダーを選択して開く|
+|mkwkdir|open dir for learning|勉強(learning): 一覧から言語やツールなどの学習用(チュートリアルなどの実施用)作業フォルダーを選択して開く|
+|mkwkdir|open dir for spike|一覧から技術的な調査や実験用作業フォルダーを選択して開く|
+|mkwkdir|open dir for resources|一覧から資料や素材などの収集用作業フォルダーを選択して開く|
 
 ### 設定
 
