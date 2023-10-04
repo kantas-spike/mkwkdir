@@ -43,6 +43,30 @@
         "title": "mkdir for resources"
       },
 
+      {
+        "command": "mkwkdir.selectWkDirForProducts",
+        "category": "mkwkdir",
+        "title": "open dir for products"
+      },
+      {
+        "command": "mkwkdir.selectWkDirForTools",
+        "category": "mkwkdir",
+        "title": "open dir for tools"
+      },
+      {
+        "command": "mkwkdir.selectWkDirForLearning",
+        "category": "mkwkdir",
+        "title": "open dir for Learning"
+      },
+      {
+        "command": "mkwkdir.selectWkDirForSpike",
+        "category": "mkwkdir",
+        "title": "open dir for spike"
+      },
+      {
+        "command": "mkwkdir.selectWkDirForResources",
+        "category": "mkwkdir",
+        "title": "open dir for resources"
       }
     ],
     "configuration": {
