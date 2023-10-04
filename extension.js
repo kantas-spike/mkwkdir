@@ -26,12 +26,14 @@ function makeWkDir(name, baseDirKey) {
         return;
       }
 
-      const baseDir = utils.getBaseDirPath(baseDirKey)
+      const baseDir = utils.getBaseDirPath(baseDirKey);
       try {
-        await fs.stat(baseDir)
+        await fs.stat(baseDir);
       } catch (error) {
-        vscode.window.showInformationMessage(`${baseDir}が存在しないため作成しました`)
-        await fs.mkdir(baseDir, { recursive: true })
+        vscode.window.showInformationMessage(
+          `${baseDir}が存在しないため作成しました`
+        );
+        await fs.mkdir(baseDir, { recursive: true });
       }
 
       const wkDirPath = await utils.makeWkDir(baseDir, dirName);
