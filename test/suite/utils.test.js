@@ -107,5 +107,9 @@ suite("utils.replaceVarUserHome", () => {
 })
 
 suite("utils.getBaseDirPath", () => {
-  expect(utils.getBaseDirPath("productsPath")).to.equal(`${os.homedir()}/hacking/products`)
+  test("basedir", () => {
+    expect(utils.getBaseDirPath("productsPath")).to.equal(`${os.homedir()}/hacking/products`)
+  })
+})
+
 })
