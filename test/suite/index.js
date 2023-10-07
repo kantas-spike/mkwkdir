@@ -1,7 +1,6 @@
 const path = require('path');
 const Mocha = require('mocha');
 const glob = require('glob');
-const covUtils = require("./cov-utils");
 
 function run() {
 	// Create the mocha test
@@ -11,8 +10,6 @@ function run() {
 	});
 
 	const testsRoot = path.resolve(__dirname, '..');
-  const projectRoot = path.resolve(path.join(testsRoot, ".."));
-  covUtils.setupCoverage(projectRoot);
 
 	return new Promise((c, e) => {
 		const testFiles = new glob.Glob('**/**.test.js', { cwd: testsRoot });

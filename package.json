@@ -42,7 +42,6 @@
         "category": "mkwkdir",
         "title": "mkdir for resources"
       },
-
       {
         "command": "mkwkdir.selectWkDirForProducts",
         "category": "mkwkdir",
@@ -112,16 +111,12 @@
     "@types/vscode": "^1.82.0",
     "@vscode/test-electron": "^2.3.4",
     "@vscode/vsce": "^2.21.0",
+    "c8": "^8.0.1",
     "chai": "^4.3.8",
     "eslint": "^8.47.0",
     "glob": "^10.3.3",
-    "istanbul-lib-coverage": "^3.2.0",
-    "istanbul-lib-hook": "^3.0.0",
-    "istanbul-lib-instrument": "^6.0.1",
-    "istanbul-lib-report": "^3.0.1",
-    "istanbul-reports": "^3.1.6",
     "mocha": "^10.2.0",
-    "test-exclude": "^6.0.0",
+    "playwright": "^1.38.1",
     "typescript": "^5.1.6"
   }
 }
