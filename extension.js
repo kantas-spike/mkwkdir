@@ -2,7 +2,6 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require("vscode");
 const utils = require("./utils");
-const child_process = require("child_process");
 const fs = require("fs/promises");
 const path = require("path");
 
@@ -71,10 +70,11 @@ function makeWkDir(name, baseDirKey) {
       vscode.window.showInformationMessage(
         `作業ディレクトリを作成しました: ${wkDirPath}`
       );
-      child_process.spawn(`code "${wkDirPath}"`, {
-        shell: true,
-        detached: true,
-      });
+      await vscode.commands.executeCommand(
+        "vscode.openFolder",
+        vscode.Uri.file(wkDirPath),
+        { forceNewWindow: true }
+      );
     } catch (err) {
       vscode.window.showErrorMessage(
         `予期しないエラーが発生しました。: ${err.message}`
