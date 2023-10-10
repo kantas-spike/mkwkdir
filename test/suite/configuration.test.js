@@ -20,11 +20,14 @@ suite("Configuration Test Suite", () => {
 
     expect(settings.get("toolsPath")).to.equal("${userHome}/hacking/tools");
     expect(utils.getBaseDirPath("toolsPath")).to.equal(`${os.homedir()}/hacking/tools`)
+
     expect(settings.get("learningPath")).to.equal(
       "${userHome}/hacking/learning"
     );
     expect(utils.getBaseDirPath("learningPath")).to.equal(`${os.homedir()}/hacking/learning`)
+
     expect(settings.get("spikePath")).to.equal("${userHome}/hacking/spike");
+    expect(utils.getBaseDirPath("spikePath")).to.equal(`${os.homedir()}/hacking/spike`)
 
     expect(settings.get("resourcesPath")).to.equal("${userHome}/hacking/res");
     expect(utils.getBaseDirPath("resourcesPath")).to.equal(`${os.homedir()}/hacking/res`)
