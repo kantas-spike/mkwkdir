@@ -24,6 +24,24 @@ const runTestInTempDir = async (fn, dirPrefix = "mkwkdir") => {
   }
 };
 
+const pressShortcut = async (window, shortCutString, waitMsec=1000) => {
+  await window.waitForTimeout(waitMsec);
+  await window.keyboard.press(shortCutString);
+}
+
+const typeKeyboad = async (window, inputString, waitMsec=1000, delayMsec=100) => {
+  await window.waitForTimeout(waitMsec);
+  await window.keyboard.type(inputString, { delay: delayMsec });
+}
+
+const getNotifications = async (window, waitMsec=5000) => {
+  await window.waitForTimeout(waitMsec);
+  return await window.locator(".notification-toast-container .monaco-list-row").all();
+}
+
 module.exports = {
   runTestInTempDir,
+  pressShortcut,
+  typeKeyboad,
+  getNotifications,
 };

@@ -2,13 +2,20 @@
 // Import the module and reference it with the alias vscode in your code below
 const vscode = require("vscode");
 const utils = require("./utils");
-const child_process = require("child_process");
 const fs = require("fs/promises");
 const path = require("path");
 
 function selectWkDir(name, baseDirKey) {
   return async () => {
     const baseDir = utils.getBaseDirPath(baseDirKey);
+    try {
+      await fs.stat(baseDir);
+    } catch (error) {
+      vscode.window.showInformationMessage(
+        `${baseDir}が存在しないため作成しました`
+      );
+      await fs.mkdir(baseDir, { recursive: true });
+    }
     const subdirs = (await fs.readdir(baseDir, { withFileTypes: true }))
       .filter((entry) => entry.isDirectory())
       .map((entry) => path.join(baseDir, entry.name));
@@ -35,21 +42,13 @@ function selectWkDir(name, baseDirKey) {
 function makeWkDir(name, baseDirKey) {
   return async () => {
     try {
-      const dirName = await vscode.window.showInputBox({
+      const inputtedDirName = await vscode.window.showInputBox({
         title: `${name}用の作業ディレクトリ名入力:`,
-        validateInput: (input) => {
-          if (input.includes(" ")) {
-            return "名前に空白は使用できません";
-          } else if (input.match(/[\\¥\/:*?"<>|]/g)) {
-            return '名前に次の文字は使用できません: \\ ¥ / : * ? " < > |';
-          } else {
-            return null;
-          }
-        },
+        validateInput: utils.validateInputDirName,
       });
 
-      if (!dirName) {
-        vscode.window.showErrorMessage("作業ディレクトリ名を選択してください");
+      if (!inputtedDirName) {
+        vscode.window.showErrorMessage(`${name}用の作業ディレクトリ名を入力してください`);
         return;
       }
 
@@ -63,14 +62,15 @@ function makeWkDir(name, baseDirKey) {
         await fs.mkdir(baseDir, { recursive: true });
       }
 
-      const wkDirPath = await utils.makeWkDir(baseDir, dirName);
+      const wkDirPath = await utils.makeWkDir(baseDir, inputtedDirName);
       vscode.window.showInformationMessage(
         `作業ディレクトリを作成しました: ${wkDirPath}`
       );
-      child_process.spawn(`code "${wkDirPath}"`, {
-        shell: true,
-        detached: true,
-      });
+      await vscode.commands.executeCommand(
+        "vscode.openFolder",
+        vscode.Uri.file(wkDirPath),
+        { forceNewWindow: true }
+      );
     } catch (err) {
       vscode.window.showErrorMessage(
         `予期しないエラーが発生しました。: ${err.message}`
@@ -106,19 +106,19 @@ function activate(context) {
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.makeWkDirForLearning",
-      makeWkDir("Tools", "learningPath")
+      makeWkDir("Learning", "learningPath")
     )
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.makeWkDirForSpike",
-      makeWkDir("Tools", "spikePath")
+      makeWkDir("Spike", "spikePath")
     )
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.makeWkDirForResources",
-      makeWkDir("Tools", "resourcesPath")
+      makeWkDir("Resources", "resourcesPath")
     )
   );
   // selectWkDir系
@@ -137,19 +137,19 @@ function activate(context) {
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.selectWkDirForLearning",
-      selectWkDir("Tools", "learningPath")
+      selectWkDir("Learning", "learningPath")
     )
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.selectWkDirForSpike",
-      selectWkDir("Tools", "spikePath")
+      selectWkDir("Spike", "spikePath")
     )
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.selectWkDirForResources",
-      selectWkDir("Tools", "resourcesPath")
+      selectWkDir("Resources", "resourcesPath")
     )
   );
 }

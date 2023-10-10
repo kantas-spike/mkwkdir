@@ -66,6 +66,16 @@ const getBaseDirPath = (baseDirKey) => {
   return baseDir;
 }
 
+const validateInputDirName = (input) => {
+  if (input.includes(" ")) {
+    return "名前に空白は使用できません";
+  } else if (input.match(/[\\¥\/:*?"<>|]/g)) {
+    return '名前に次の文字は使用できません: \\ ¥ / : * ? " < > |';
+  } else {
+    return undefined;
+  }
+}
+
 module.exports = {
   getMaxPrefixNo,
   formatDirName,
@@ -73,4 +83,5 @@ module.exports = {
   hasPrefix,
   replaceVarUserHome,
   getBaseDirPath,
+  validateInputDirName,
 };

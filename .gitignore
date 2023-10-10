@@ -3,3 +3,4 @@ node_modules
 *.vsix
 coverage/
 .DS_Store
+fixtures/workspace/.vscode/settings.json

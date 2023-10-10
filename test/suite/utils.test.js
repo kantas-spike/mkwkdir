@@ -6,7 +6,7 @@ const os = require('os')
 
 const utils = require("../../utils");
 
-const { runTestInTempDir } = require("../test-utils");
+const { runTestInTempDir } = require("../../test-utils");
 
 suite("utils.hasPrefix Test Suite", () => {
   test("bad dirname", () => {
@@ -107,5 +107,31 @@ suite("utils.replaceVarUserHome", () => {
 })
 
 suite("utils.getBaseDirPath", () => {
-  expect(utils.getBaseDirPath("productsPath")).to.equal(`${os.homedir()}/hacking/products`)
+  test("basedir", () => {
+    expect(utils.getBaseDirPath("productsPath")).to.equal(`${os.homedir()}/hacking/products`)
+  })
+})
+
+suite("utils.validateInputDirName", () => {
+  test("valid input", () => {
+    expect(utils.validateInputDirName("abcd")).to.undefined
+    expect(utils.validateInputDirName("日本語")).to.undefined
+  })
+  test('empty', () => {
+    expect(utils.validateInputDirName("")).to.undefined
+  })
+  test('空白あり', () => {
+    expect(utils.validateInputDirName("aa aa")).to.match(/空白は使用できません/)
+  })
+  test('不正な文字あり', () => {
+    function escapeRegExp(string) {
+      return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); // $& means the whole matched string
+    }
+
+    for(const c of '\\¥/:*?"<>|') {
+      const pattern = RegExp(`文字は使用できません:.*${escapeRegExp(c)}.*`)
+      expect(utils.validateInputDirName(`aa${c}aa`), `不正文字: ${c}`).to.match(pattern)
+    }
+
+  })
 })
