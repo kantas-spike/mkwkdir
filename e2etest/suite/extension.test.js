@@ -73,7 +73,7 @@ suite("E2E Test Suite", function () {
   });
 
   suite("for spike", async function () {
-    test("mkdir for spike", async () => {
+    test("`mkdir for spike`で`テスト`という作業ディレクトリを作成する", async () => {
       // check
       let wins = await electronApp.windows();
       expect(wins.length).to.equal(1);
@@ -81,13 +81,17 @@ suite("E2E Test Suite", function () {
         .false;
 
       // act
+      //  コマンドパレットを開く
       await testUtils.pressShortcut(window, "Shift+Meta+P");
+      //  `mkdir for spike`コマンドを実行
       await testUtils.typeKeyboad(window, "mkwkdir mkdir spike");
       await testUtils.pressShortcut(window, "Enter");
+      //  `テスト`という作業ディレクトリを作成
       await testUtils.typeKeyboad(window, "テスト");
       await testUtils.pressShortcut(window, "Enter");
 
       // assert
+      //  通知の確認
       const notifications = await testUtils.getNotifications(window);
       expect(notifications.length).to.equal(2);
       expect(await notifications[1].innerText()).to.equal(
@@ -102,6 +106,7 @@ suite("E2E Test Suite", function () {
           "wkdir_root/hacking/spike/001_テスト"
         )}`
       );
+      // `テスト`作業ディレクトリの作成確認
       expect(fs.existsSync(path.join(FIXTURE_DIR, "wkdir_root/hacking/spike"))).to
         .true;
       expect(
@@ -110,12 +115,13 @@ suite("E2E Test Suite", function () {
         )
       ).to.true;
 
+      // 新規ウィンドウが作成され、`テスト`ディレクトリが開かれていることを確認
       wins = await electronApp.windows();
       expect(wins.length).to.equal(2);
       expect(await wins[1].title()).to.match(/001_テスト/);
     });
 
-    test("open dir for spike", async () => {
+    test("`open dir for spike`で`テスト`という作業ディレクトリを開く", async () => {
       // check
       let wins = await electronApp.windows();
       expect(wins.length).to.equal(1);
@@ -123,15 +129,18 @@ suite("E2E Test Suite", function () {
         .true;
 
       // act
+      //   コマンドパレットを開く
       await testUtils.pressShortcut(window, "Shift+Meta+P");
+      //   `open for spike`コマンドを実行
       await testUtils.typeKeyboad(window, "mkwkdir open spike");
       await testUtils.pressShortcut(window, "Enter");
+      //   `テスト`ディレクトリを指定
       await testUtils.typeKeyboad(window, "テスト");
       await testUtils.pressShortcut(window, "Enter");
 
       // assert
+      //   最新の通知の確認
       const notifications = await testUtils.getNotifications(window);
-      // expect(notifications.length).to.equal(2);
       expect(await notifications[0].innerText()).to.equal(
         `${path.join(
           FIXTURE_DIR,
@@ -139,32 +148,38 @@ suite("E2E Test Suite", function () {
         )}を開きます...`
       );
 
+      // 新規ウィンドウが作成され、`テスト`ディレクトリが開かれていることを確認
       wins = await electronApp.windows();
       expect(wins.length).to.equal(2);
       expect(await wins[1].title()).to.match(/001_テスト/);
     });
 
-    suite("bad input", async function () {
-      test("mkdir without dirname", async () => {
+    suite("ディレクトリ名に不正な値が入力された場合", async function () {
+      test("`mkdir for spike`にディレクトリ名が未指定の場合", async () => {
         // check
         let wins = await electronApp.windows();
         expect(wins.length).to.equal(1);
 
         // act
+        //   コマンドパレットを開く
         await testUtils.pressShortcut(window, "Shift+Meta+P");
+        //   `mkdir for spike`コマンドを実行
         await testUtils.typeKeyboad(window, "mkwkdir mkdir spike");
         await testUtils.pressShortcut(window, "Enter");
+        //   作成するディレクトリ名を未指定にする
         await testUtils.pressShortcut(window, "Enter");
 
         // assert
+        //   通知を確認
         const notifications = await testUtils.getNotifications(window);
         expect(await notifications[0].innerText()).to.equal("Spike用の作業ディレクトリ名を入力してください");
 
+        //   新たなウィンドウは表示されない
         wins = await electronApp.windows();
         expect(wins.length).to.equal(1);
       });
 
-      test("mkdir with dirname having sapces", async () => {
+      test("`mkdir for spike`に空白も持つディレクトリ名が指定された場合", async () => {
         // check
         let wins = await electronApp.windows();
         expect(wins.length).to.equal(1);
@@ -177,6 +192,7 @@ suite("E2E Test Suite", function () {
         await testUtils.pressShortcut(window, "Enter");
 
         // assert
+        //   エラーメッセージの確認
         const items = await window.getByText(/名前に空白は使用できません/).all()
         expect(items.length).to.equal(1)
 
@@ -184,7 +200,7 @@ suite("E2E Test Suite", function () {
         expect(wins.length).to.equal(1);
       });
 
-      test("mkdir with bad dirname", async () => {
+      test("`mkdir for spike`に不正な文字を持つディレクトリ名が指定された場合", async () => {
         // check
         let wins = await electronApp.windows();
         expect(wins.length).to.equal(1);
@@ -197,6 +213,7 @@ suite("E2E Test Suite", function () {
         await testUtils.pressShortcut(window, "Enter");
 
         // assert
+        //   エラーメッセージの確認
         const items = await window.getByText(/名前に次の文字は使用できません:/).all()
         expect(items.length).to.equal(1)
 
@@ -204,7 +221,7 @@ suite("E2E Test Suite", function () {
         expect(wins.length).to.equal(1);
       });
 
-      test("open dir without dirname", async () => {
+      test("`open for dir`にディレクトリ名が未指定の場合", async () => {
         // check
         let wins = await electronApp.windows();
         expect(wins.length).to.equal(1);
@@ -213,8 +230,11 @@ suite("E2E Test Suite", function () {
         await testUtils.pressShortcut(window, "Shift+Meta+P");
         await testUtils.typeKeyboad(window, "mkwkdir open spike");
         await testUtils.pressShortcut(window, "Enter");
+        //   ディレクトリ名を選択しない
         await testUtils.pressShortcut(window, "Escape");
+
         // assert
+        //   通知を確認
         const notifications = await testUtils.getNotifications(window);
         expect(await notifications[0].innerText()).to.equal("Spike用の作業ディレクトリを選択してください");
 
