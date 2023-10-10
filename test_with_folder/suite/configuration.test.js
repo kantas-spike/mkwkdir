@@ -1,6 +1,5 @@
 const { expect } = require("chai");
 const utils = require("../../utils")
-const os = require('os')
 const path = require('path')
 
 // You can import and use all API from the 'vscode' module
@@ -25,20 +24,20 @@ suite("Configuration Test Suite", () => {
     expect(settings.get("productsPath")).to.equal(
       `${WKDIR_ROOT_DIR}/hacking/products`
     );
-    expect(utils.getBaseDirPath("productsPath")).to.equal(`${WKDIR_ROOT_DIR}/hacking/products`)
+    expect(utils.getCategoryDirPath("productsPath")).to.equal(`${WKDIR_ROOT_DIR}/hacking/products`)
 
     expect(settings.get("toolsPath")).to.equal(`${WKDIR_ROOT_DIR}/hacking/tools`);
-    expect(utils.getBaseDirPath("toolsPath")).to.equal(`${WKDIR_ROOT_DIR}/hacking/tools`)
+    expect(utils.getCategoryDirPath("toolsPath")).to.equal(`${WKDIR_ROOT_DIR}/hacking/tools`)
 
     expect(settings.get("learningPath")).to.equal(
       `${WKDIR_ROOT_DIR}/hacking/learning`
     );
-    expect(utils.getBaseDirPath("learningPath")).to.equal(`${WKDIR_ROOT_DIR}/hacking/learning`)
+    expect(utils.getCategoryDirPath("learningPath")).to.equal(`${WKDIR_ROOT_DIR}/hacking/learning`)
 
     expect(settings.get("spikePath")).to.equal(`${WKDIR_ROOT_DIR}/hacking/spike`);
-    expect(utils.getBaseDirPath("spikePath")).to.equal(`${WKDIR_ROOT_DIR}/hacking/spike`)
+    expect(utils.getCategoryDirPath("spikePath")).to.equal(`${WKDIR_ROOT_DIR}/hacking/spike`)
 
     expect(settings.get("resourcesPath")).to.equal(`${WKDIR_ROOT_DIR}/hacking/res`);
-    expect(utils.getBaseDirPath("resourcesPath")).to.equal(`${WKDIR_ROOT_DIR}/hacking/res`)
+    expect(utils.getCategoryDirPath("resourcesPath")).to.equal(`${WKDIR_ROOT_DIR}/hacking/res`)
   });
 });

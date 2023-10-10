@@ -5,9 +5,16 @@ const utils = require("./utils");
 const fs = require("fs/promises");
 const path = require("path");
 
+/**
+ * `mkwkdir.selectWkDirFor${カテゴリ名}`コマンドに登録する関数を生成する
+ *
+ * @param {string} name 作業ディレクトリのカテゴリ名
+ * @param {string} baseDirKey 作業ディレクトリの名前. 作業ディレクトリのルートディレクトリ直下に配置されるディレクトリ名
+ * @returns `vscode.commands`への登録用の関数を返却する
+ */
 function selectWkDir(name, baseDirKey) {
   return async () => {
-    const baseDir = utils.getBaseDirPath(baseDirKey);
+    const baseDir = utils.getCategoryDirPath(baseDirKey);
     try {
       await fs.stat(baseDir);
     } catch (error) {
@@ -39,6 +46,13 @@ function selectWkDir(name, baseDirKey) {
   };
 }
 
+/**
+ * `mkwkdir.makeWkDirFor${カテゴリ名}`コマンドに登録する関数を生成する
+ *
+ * @param {string} name 作業ディレクトリのカテゴリ名
+ * @param {string} baseDirKey 作業ディレクトリの名前. 作業ディレクトリのルートディレクトリ直下に配置されるディレクトリ名
+ * @returns `vscode.commands`への登録用の関数を返却する
+ */
 function makeWkDir(name, baseDirKey) {
   return async () => {
     try {
@@ -52,7 +66,7 @@ function makeWkDir(name, baseDirKey) {
         return;
       }
 
-      const baseDir = utils.getBaseDirPath(baseDirKey);
+      const baseDir = utils.getCategoryDirPath(baseDirKey);
       try {
         await fs.stat(baseDir);
       } catch (error) {
