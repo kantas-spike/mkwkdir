@@ -2,7 +2,7 @@
   "name": "mkwkdir",
   "displayName": "mkwkdir",
   "description": "Extension for creating a working directory",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "engines": {
     "vscode": "^1.82.0"
   },
