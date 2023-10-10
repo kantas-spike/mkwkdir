@@ -8,6 +8,14 @@ const path = require("path");
 function selectWkDir(name, baseDirKey) {
   return async () => {
     const baseDir = utils.getBaseDirPath(baseDirKey);
+    try {
+      await fs.stat(baseDir);
+    } catch (error) {
+      vscode.window.showInformationMessage(
+        `${baseDir}が存在しないため作成しました`
+      );
+      await fs.mkdir(baseDir, { recursive: true });
+    }
     const subdirs = (await fs.readdir(baseDir, { withFileTypes: true }))
       .filter((entry) => entry.isDirectory())
       .map((entry) => path.join(baseDir, entry.name));
