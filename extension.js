@@ -48,7 +48,7 @@ function makeWkDir(name, baseDirKey) {
       });
 
       if (!inputtedDirName) {
-        vscode.window.showErrorMessage("作業ディレクトリ名を選択してください");
+        vscode.window.showErrorMessage(`${name}用の作業ディレクトリ名を入力してください`);
         return;
       }
 
@@ -106,19 +106,19 @@ function activate(context) {
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.makeWkDirForLearning",
-      makeWkDir("Tools", "learningPath")
+      makeWkDir("Learning", "learningPath")
     )
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.makeWkDirForSpike",
-      makeWkDir("Tools", "spikePath")
+      makeWkDir("Spike", "spikePath")
     )
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.makeWkDirForResources",
-      makeWkDir("Tools", "resourcesPath")
+      makeWkDir("Resources", "resourcesPath")
     )
   );
   // selectWkDir系
@@ -137,19 +137,19 @@ function activate(context) {
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.selectWkDirForLearning",
-      selectWkDir("Tools", "learningPath")
+      selectWkDir("Learning", "learningPath")
     )
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.selectWkDirForSpike",
-      selectWkDir("Tools", "spikePath")
+      selectWkDir("Spike", "spikePath")
     )
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.selectWkDirForResources",
-      selectWkDir("Tools", "resourcesPath")
+      selectWkDir("Resources", "resourcesPath")
     )
   );
 }
