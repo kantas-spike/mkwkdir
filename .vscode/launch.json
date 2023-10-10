@@ -21,6 +21,13 @@
 				"--extensionDevelopmentPath=${workspaceFolder}",
 				"--extensionTestsPath=${workspaceFolder}/test/suite/index"
 			]
-		}
+		},
+    {
+      "name": "e2e test",
+      "program": "${workspaceFolder}/e2etest/suite/index.js",
+      "request": "launch",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "node"
+    }
 	]
 }
