@@ -32,28 +32,16 @@ function selectWkDir(name, baseDirKey) {
 }
 
 function makeWkDir(name, baseDirKey) {
-  return async (dirName) => {
+  return async () => {
     try {
-      let inputtedDirName = dirName;
-      if (!inputtedDirName) {
-        inputtedDirName = await vscode.window.showInputBox({
-          title: `${name}用の作業ディレクトリ名入力:`,
-          validateInput: utils.validateInputDirName,
-        });
+      const inputtedDirName = await vscode.window.showInputBox({
+        title: `${name}用の作業ディレクトリ名入力:`,
+        validateInput: utils.validateInputDirName,
+      });
 
-        if (!inputtedDirName) {
-          vscode.window.showErrorMessage(
-            "作業ディレクトリ名を選択してください"
-          );
-          return;
-        }
-      } else {
-        const msg = utils.validateInputDirName(inputtedDirName)
-        if (msg) {
-          vscode.window.showErrorMessage(
-            `ディレクトリ名が不正です: ${msg}`
-          );
-        }
+      if (!inputtedDirName) {
+        vscode.window.showErrorMessage("作業ディレクトリ名を選択してください");
+        return;
       }
 
       const baseDir = utils.getBaseDirPath(baseDirKey);
