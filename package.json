@@ -13,6 +13,7 @@
     "type": "git",
     "url": "https://github.com/kantas-spike/mkwkdir.git"
   },
+  "license": "MIT",
   "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
@@ -103,7 +104,7 @@
     "lint": "eslint .",
     "pretest": "npm run lint",
     "test": "node ./test/runTest.js",
-    "package": "npx vsce pack --skip-license"
+    "package": "npx vsce pack"
   },
   "devDependencies": {
     "@types/mocha": "^10.0.1",
