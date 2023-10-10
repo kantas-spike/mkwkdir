@@ -6,7 +6,7 @@ const os = require('os')
 
 const utils = require("../../utils");
 
-const { runTestInTempDir } = require("../test-utils");
+const { runTestInTempDir } = require("../../test-utils");
 
 suite("utils.hasPrefix Test Suite", () => {
   test("bad dirname", () => {
