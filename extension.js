@@ -19,7 +19,7 @@ function selectWkDir(name, baseDirKey) {
       await fs.stat(baseDir);
     } catch (error) {
       vscode.window.showInformationMessage(
-        `${baseDir}が存在しないため作成しました`
+        `${baseDir}が存在しないため作成しました`,
       );
       await fs.mkdir(baseDir, { recursive: true });
     }
@@ -36,11 +36,11 @@ function selectWkDir(name, baseDirKey) {
       await vscode.commands.executeCommand(
         "vscode.openFolder",
         vscode.Uri.file(selectedDir),
-        { forceNewWindow: true }
+        { forceNewWindow: true },
       );
     } else {
       vscode.window.showErrorMessage(
-        `${name}用の作業ディレクトリを選択してください`
+        `${name}用の作業ディレクトリを選択してください`,
       );
     }
   };
@@ -62,7 +62,9 @@ function makeWkDir(name, baseDirKey) {
       });
 
       if (!inputtedDirName) {
-        vscode.window.showErrorMessage(`${name}用の作業ディレクトリ名を入力してください`);
+        vscode.window.showErrorMessage(
+          `${name}用の作業ディレクトリ名を入力してください`,
+        );
         return;
       }
 
@@ -71,23 +73,23 @@ function makeWkDir(name, baseDirKey) {
         await fs.stat(baseDir);
       } catch (error) {
         vscode.window.showInformationMessage(
-          `${baseDir}が存在しないため作成しました`
+          `${baseDir}が存在しないため作成しました`,
         );
         await fs.mkdir(baseDir, { recursive: true });
       }
 
       const wkDirPath = await utils.makeWkDir(baseDir, inputtedDirName);
       vscode.window.showInformationMessage(
-        `作業ディレクトリを作成しました: ${wkDirPath}`
+        `作業ディレクトリを作成しました: ${wkDirPath}`,
       );
       await vscode.commands.executeCommand(
         "vscode.openFolder",
         vscode.Uri.file(wkDirPath),
-        { forceNewWindow: true }
+        { forceNewWindow: true },
       );
     } catch (err) {
       vscode.window.showErrorMessage(
-        `予期しないエラーが発生しました。: ${err.message}`
+        `予期しないエラーが発生しました。: ${err.message}`,
       );
     }
   };
@@ -108,63 +110,63 @@ function activate(context) {
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.makeWkDirForProducts",
-      makeWkDir("Products", "productsPath")
-    )
+      makeWkDir("Products", "productsPath"),
+    ),
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.makeWkDirForTools",
-      makeWkDir("Tools", "toolsPath")
-    )
+      makeWkDir("Tools", "toolsPath"),
+    ),
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.makeWkDirForLearning",
-      makeWkDir("Learning", "learningPath")
-    )
+      makeWkDir("Learning", "learningPath"),
+    ),
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.makeWkDirForSpike",
-      makeWkDir("Spike", "spikePath")
-    )
+      makeWkDir("Spike", "spikePath"),
+    ),
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.makeWkDirForResources",
-      makeWkDir("Resources", "resourcesPath")
-    )
+      makeWkDir("Resources", "resourcesPath"),
+    ),
   );
   // selectWkDir系
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.selectWkDirForProducts",
-      selectWkDir("Products", "productsPath")
-    )
+      selectWkDir("Products", "productsPath"),
+    ),
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.selectWkDirForTools",
-      selectWkDir("Tools", "toolsPath")
-    )
+      selectWkDir("Tools", "toolsPath"),
+    ),
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.selectWkDirForLearning",
-      selectWkDir("Learning", "learningPath")
-    )
+      selectWkDir("Learning", "learningPath"),
+    ),
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.selectWkDirForSpike",
-      selectWkDir("Spike", "spikePath")
-    )
+      selectWkDir("Spike", "spikePath"),
+    ),
   );
   context.subscriptions.push(
     vscode.commands.registerCommand(
       "mkwkdir.selectWkDirForResources",
-      selectWkDir("Resources", "resourcesPath")
-    )
+      selectWkDir("Resources", "resourcesPath"),
+    ),
   );
 }
 
