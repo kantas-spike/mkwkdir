@@ -6,6 +6,28 @@ const fs = require("fs/promises");
 const path = require("path");
 
 /**
+ * 収集するか判定する
+ *
+ * @param {string} baseDir
+ * @param {fs.Dirent} entry
+ * @returns true: 収集する, false: 収集しない
+ */
+async function isTargetEntry(baseDir, entry) {
+  if (entry.isDirectory()) {
+    return true;
+  } else if (entry.isSymbolicLink()) {
+    const symPath = path.join(baseDir, entry.name);
+    const realPath = await fs.readlink(symPath);
+    const ent = await fs.stat(realPath);
+    if (ent.isDirectory()) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+/**
  * `mkwkdir.selectWkDirFor${カテゴリ名}`コマンドに登録する関数を生成する
  *
  * @param {string} name 作業ディレクトリのカテゴリ名
@@ -24,7 +46,7 @@ function selectWkDir(name, baseDirKey) {
       await fs.mkdir(baseDir, { recursive: true });
     }
     const subdirs = (await fs.readdir(baseDir, { withFileTypes: true }))
-      .filter((entry) => entry.isDirectory())
+      .filter((entry) => isTargetEntry(baseDir, entry))
       .map((entry) => path.join(baseDir, entry.name));
     const selectedDir = await vscode.window.showQuickPick(subdirs, {
       canPickMany: false,
