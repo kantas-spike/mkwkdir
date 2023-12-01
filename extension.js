@@ -10,9 +10,13 @@ const path = require("path");
  *
  * @param {string} baseDir
  * @param {fs.Dirent} entry
+ * @param {Array} ignoreList
  * @returns true: 収集する, false: 収集しない
  */
-async function isTargetEntry(baseDir, entry) {
+async function isTargetEntry(baseDir, entry, ignoreList = [".DS_Store"]) {
+  if (ignoreList.includes(entry.name)) {
+    return false;
+  }
   if (entry.isDirectory()) {
     return true;
   } else if (entry.isSymbolicLink()) {
@@ -45,9 +49,13 @@ function selectWkDir(name, baseDirKey) {
       );
       await fs.mkdir(baseDir, { recursive: true });
     }
-    const subdirs = (await fs.readdir(baseDir, { withFileTypes: true }))
-      .filter((entry) => isTargetEntry(baseDir, entry))
-      .map((entry) => path.join(baseDir, entry.name));
+    const subdirs = [];
+    const entryList = await fs.readdir(baseDir, { withFileTypes: true });
+    for (const entry of entryList) {
+      if (await isTargetEntry(baseDir, entry)) {
+        subdirs.push(path.join(baseDir, entry.name));
+      }
+    }
     const selectedDir = await vscode.window.showQuickPick(subdirs, {
       canPickMany: false,
       title: `${name} 作業ディレクトリの選択`,
